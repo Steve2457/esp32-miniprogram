@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="title">连接设备</view>
+  
+  <view class="form-item">
+    <text class="label">ESP32 IP地址:</text>
+    <input class="input" type="text" placeholder="请输入ESP32设备IP地址" value="{{ipAddress}}" bindinput="onIpInput"/>
+  </view>
+  
+  <view class="button-group">
+    <button class="btn" bindtap="testConnection">测试连接</button>
+    <button class="btn primary" bindtap="saveConnection">保存连接</button>
+  </view>
+  
+  <view class="status {{connected ? 'success' : 'error'}}">
+    <text>状态: {{statusText}}</text>
+  </view>
+  
+  <view class="tips">
+    <text class="tip-title">连接提示:</text>
+    <text>1. 确保手机与ESP32设备在同一WiFi网络下</text>
+    <text>2. 可以在路由器管理页面查看ESP32的IP地址</text>
+    <text>3. ESP32设备默认使用80端口提供服务</text>
+  </view>
+</view> 

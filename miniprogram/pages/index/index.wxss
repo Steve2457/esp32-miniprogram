@@ -1,0 +1,128 @@
+/**index.wxss**/
+.scrollarea {
+  height: 100vh;
+}
+
+.container {
+  padding: 30rpx;
+}
+
+.clock-card {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  padding: 40rpx;
+  border-radius: 20rpx;
+  color: white;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2);
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.time-display {
+  font-size: 80rpx;
+  font-weight: bold;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.date-display {
+  font-size: 32rpx;
+  margin: 10rpx 0 30rpx;
+}
+
+.format-switch {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 28rpx;
+}
+
+.format-switch text {
+  margin-right: 10rpx;
+}
+
+.device-info {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #f8f9fa;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+}
+
+.status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.connected .status-dot {
+  background-color: #28a745;
+}
+
+.disconnected .status-dot {
+  background-color: #dc3545;
+}
+
+.device-info text {
+  flex-grow: 1;
+}
+
+.time-settings {
+  margin-bottom: 40rpx;
+}
+
+.setting-btn {
+  width: 100%;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 20rpx 0;
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.feature-container {
+  width: 100%;
+  padding: 0 5rpx;
+}
+
+.feature-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.feature-item {
+  flex: 1;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 16rpx;
+  padding: 30rpx 5rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  margin: 0 8rpx;
+}
+
+.feature-icon {
+  font-size: 64rpx;
+  margin-bottom: 20rpx;
+}
+
+.feature-name {
+  font-size: 28rpx;
+  color: #666;
+  white-space: nowrap;
+}

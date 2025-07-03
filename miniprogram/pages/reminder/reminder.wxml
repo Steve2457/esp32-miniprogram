@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="title">提醒设置</view>
+  
+  <view class="connection-status {{connected ? 'connected' : 'disconnected'}}">
+    <view class="status-dot"></view>
+    <text>{{connectionStatus}}</text>
+  </view>
+  
+  <view class="form">
+    <view class="form-item">
+      <view class="label">标题</view>
+      <input class="input" type="text" value="{{reminderTitle}}" placeholder="输入提醒标题" bindinput="onTitleInput" />
+    </view>
+    
+    <view class="form-item">
+      <view class="label">描述</view>
+      <textarea class="textarea" value="{{reminderDesc}}" placeholder="输入提醒详情描述" bindinput="onDescInput"></textarea>
+    </view>
+    
+    <view class="form-item">
+      <view class="label">日期时间</view>
+      <picker mode="multiSelector" value="{{dateTimeArray}}" range="{{dateTimeSelector}}" bindchange="onDateTimeChange">
+        <view class="picker-view">
+          <text class="date-time-text">{{displayDateTime}}</text>
+          <text class="hint">点击选择日期时间</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+  
+  <button class="save-btn {{connected ? '' : 'disabled'}}" bindtap="saveReminder" disabled="{{!connected}}">保存提醒</button>
+  
+  <view class="current-reminder" wx:if="{{hasCurrentReminder}}">
+    <view class="section-title">当前提醒</view>
+    <view class="reminder-card">
+      <view class="reminder-title">{{currentReminder.title}}</view>
+      <view class="reminder-desc">{{currentReminder.description}}</view>
+      <view class="reminder-time">{{currentReminder.displayTime}}</view>
+    </view>
+  </view>
+  
+  <view class="tips">
+    <text class="tip-title">提示:</text>
+    <text>1. 提醒将在设定的时间在设备上显示</text>
+    <text>2. 设备仅支持保存一个提醒事项</text>
+    <text>3. 新的提醒设置将覆盖旧的提醒</text>
+  </view>
+</view> 

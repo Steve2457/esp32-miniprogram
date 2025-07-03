@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="clock-card">
+      <view class="time-display">{{currentTime}}</view>
+      <view class="date-display">{{currentDate}}</view>
+      <view class="format-switch">
+        <text>24小时制</text>
+        <switch checked="{{is24hFormat}}" bindchange="onFormatChange"/>
+      </view>
+    </view>
+    
+    <view class="device-info {{connected ? 'connected' : 'disconnected'}}">
+      <view class="status-dot"></view>
+      <text>{{connectionStatus}}</text>
+      <button size="mini" bindtap="navigateToConnect">{{connected ? '重新连接' : '连接设备'}}</button>
+    </view>
+    
+    <view class="time-settings">
+      <button class="setting-btn" bindtap="syncTime">
+        <view class="btn-content">
+          <text class="icon">⏱️</text>
+          <text>同步时间到设备</text>
+        </view>
+      </button>
+    </view>
+    
+    <view class="feature-container">
+      <view class="feature-grid">
+        <view class="feature-item" bindtap="navigateToAlarm">
+          <view class="feature-icon">⏰</view>
+          <view class="feature-name">闹钟</view>
+        </view>
+        <view class="feature-item" bindtap="navigateToTimer">
+          <view class="feature-icon">⏲️</view>
+          <view class="feature-name">定时器</view>
+        </view>
+        <view class="feature-item" bindtap="navigateToReminder">
+          <view class="feature-icon">📅</view>
+          <view class="feature-name">提醒事项</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="title">闹钟设置</view>
+  
+  <view class="connection-status {{connected ? 'connected' : 'disconnected'}}">
+    <view class="status-dot"></view>
+    <text>{{connectionStatus}}</text>
+  </view>
+  
+  <view class="time-picker">
+    <picker mode="time" value="{{alarmTime}}" bindchange="onTimeChange">
+      <view class="picker-view">
+        <text class="time-text">{{alarmTime}}</text>
+        <text class="hint">点击修改时间</text>
+      </view>
+    </picker>
+  </view>
+  
+  <view class="switch-item">
+    <text>启用闹钟</text>
+    <switch checked="{{isAlarmEnabled}}" bindchange="onSwitchChange"></switch>
+  </view>
+  
+  <button class="save-btn {{connected ? '' : 'disabled'}}" bindtap="saveAlarm" disabled="{{!connected}}">保存设置</button>
+  
+  <view class="tips">
+    <text class="tip-title">提示:</text>
+    <text>1. 闹钟时间使用24小时制格式</text>
+    <text>2. 闹钟设置保存后将立即生效</text>
+    <text>3. 请确保设备时间已正确设置</text>
+  </view>
+</view> 

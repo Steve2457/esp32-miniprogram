@@ -1,0 +1,61 @@
+<view class="container">
+  <view class="title">定时器设置</view>
+  
+  <view class="connection-status {{connected ? 'connected' : 'disconnected'}}">
+    <view class="status-dot"></view>
+    <text>{{connectionStatus}}</text>
+  </view>
+  
+  <view class="time-setting">
+    <view class="time-display">
+      <view class="time-unit">
+        <picker value="{{hours}}" range="{{hourArray}}" bindchange="onHourChange">
+          <view class="value">{{hours}}</view>
+        </picker>
+        <view class="label">小时</view>
+      </view>
+      <view class="colon">:</view>
+      <view class="time-unit">
+        <picker value="{{minutes}}" range="{{minuteArray}}" bindchange="onMinuteChange">
+          <view class="value">{{minutes}}</view>
+        </picker>
+        <view class="label">分钟</view>
+      </view>
+      <view class="colon">:</view>
+      <view class="time-unit">
+        <picker value="{{seconds}}" range="{{secondArray}}" bindchange="onSecondChange">
+          <view class="value">{{seconds}}</view>
+        </picker>
+        <view class="label">秒</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="timer-status {{isRunning ? 'running' : ''}}">
+    <text>{{timerStatusText}}</text>
+  </view>
+  
+  <view class="control-buttons">
+    <button class="control-btn start {{(isRunning || !connected) ? 'disabled' : ''}}" 
+            bindtap="startTimer" disabled="{{isRunning || !connected}}">
+      开始
+    </button>
+    
+    <button class="control-btn stop {{(!isRunning || !connected) ? 'disabled' : ''}}" 
+            bindtap="stopTimer" disabled="{{!isRunning || !connected}}">
+      停止
+    </button>
+    
+    <button class="control-btn reset {{!connected ? 'disabled' : ''}}" 
+            bindtap="resetTimer" disabled="{{!connected}}">
+      重置
+    </button>
+  </view>
+  
+  <view class="tips">
+    <text class="tip-title">提示:</text>
+    <text>1. 点击时间数字可以进行修改</text>
+    <text>2. 定时器运行时无法修改时间</text>
+    <text>3. 定时器倒计时结束后将自动发出提示</text>
+  </view>
+</view> 
