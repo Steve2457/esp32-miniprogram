@@ -23,6 +23,12 @@
           <text>同步时间到设备</text>
         </view>
       </button>
+      <button class="setting-btn" bindtap="showManualTimeDialog">
+        <view class="btn-content">
+          <text class="icon">🕒</text>
+          <text>手动设置时间</text>
+        </view>
+      </button>
     </view>
     
     <view class="feature-container">
@@ -43,3 +49,31 @@
     </view>
   </view>
 </scroll-view>
+
+<!-- 手动设置时间日期弹窗 -->
+<view class="manual-time-modal" wx:if="{{showManualTimeModal}}">
+  <view class="modal-mask" bindtap="hideManualTimeDialog"></view>
+  <view class="modal-content">
+    <view class="modal-header">手动设置时间</view>
+    <view class="modal-body">
+      <view class="time-picker-section">
+        <picker mode="date" value="{{manualDate}}" start="2000-01-01" end="2099-12-31" bindchange="onDateChange">
+          <view class="picker-item">
+            <text>日期:</text>
+            <text class="picker-value">{{manualDate}}</text>
+          </view>
+        </picker>
+        <picker mode="time" value="{{manualTime}}" bindchange="onTimeChange">
+          <view class="picker-item">
+            <text>时间:</text>
+            <text class="picker-value">{{manualTime}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="modal-btn cancel-btn" bindtap="hideManualTimeDialog">取消</button>
+      <button class="modal-btn confirm-btn" bindtap="setManualTime">确定</button>
+    </view>
+  </view>
+</view>

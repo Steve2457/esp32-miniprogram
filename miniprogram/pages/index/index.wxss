@@ -126,3 +126,93 @@
   color: #666;
   white-space: nowrap;
 }
+
+/* 手动设置时间日期弹窗样式 */
+.manual-time-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  padding: 30rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-body {
+  padding: 30rpx;
+}
+
+.time-picker-section {
+  margin: 20rpx 0;
+}
+
+.picker-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 10rpx;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 30rpx;
+}
+
+.picker-value {
+  color: #2575fc;
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 1px solid #eee;
+}
+
+.modal-btn {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  border-radius: 0;
+  background-color: #fff;
+  margin: 0;
+}
+
+.modal-btn::after {
+  border: none;
+}
+
+.cancel-btn {
+  color: #666;
+  border-right: 1px solid #eee;
+}
+
+.confirm-btn {
+  color: #2575fc;
+  font-weight: bold;
+}

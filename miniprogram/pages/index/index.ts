@@ -39,7 +39,11 @@ Page({
     is24hFormat: true,
     connected: false,
     connectionStatus: '未连接设备',
-    deviceStatus: null as DeviceStatus | null
+    deviceStatus: null as DeviceStatus | null,
+    // 手动设置时间相关
+    showManualTimeModal: false,
+    manualDate: '',
+    manualTime: ''
   },
 
   onLoad() {
@@ -51,6 +55,19 @@ Page({
     
     // 检查连接状态
     this.checkConnection();
+    
+    // 初始化手动设置时间的日期和时间
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hour = now.getHours().toString().padStart(2, '0');
+    const minute = now.getMinutes().toString().padStart(2, '0');
+    
+    this.setData({
+      manualDate: `${year}-${month}-${day}`,
+      manualTime: `${hour}:${minute}`
+    });
   },
   
   onShow() {
@@ -220,6 +237,101 @@ Page({
       wx.hideLoading();
       wx.showToast({
         title: '同步时间失败',
+        icon: 'none'
+      });
+    }
+  },
+  
+  // 显示手动设置时间弹窗
+  showManualTimeDialog() {
+    if (!this.data.connected) {
+      wx.showToast({
+        title: '请先连接设备',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    this.setData({
+      showManualTimeModal: true
+    });
+  },
+  
+  // 隐藏手动设置时间弹窗
+  hideManualTimeDialog() {
+    this.setData({
+      showManualTimeModal: false
+    });
+  },
+  
+  // 日期选择器变化
+  onDateChange(e: any) {
+    this.setData({
+      manualDate: e.detail.value
+    });
+  },
+  
+  // 时间选择器变化
+  onTimeChange(e: any) {
+    this.setData({
+      manualTime: e.detail.value
+    });
+  },
+  
+  // 设置手动时间到设备
+  async setManualTime() {
+    if (!this.data.connected) {
+      wx.showToast({
+        title: '请先连接设备',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    try {
+      wx.showLoading({
+        title: '设置时间中...',
+        mask: true
+      });
+      
+      // 解析日期和时间
+      const dateArr = this.data.manualDate.split('-');
+      const timeArr = this.data.manualTime.split(':');
+      
+      if (dateArr.length !== 3 || timeArr.length !== 2) {
+        throw new Error('日期或时间格式不正确');
+      }
+      
+      const timeData = {
+        year: parseInt(dateArr[0]),
+        month: parseInt(dateArr[1]),
+        date: parseInt(dateArr[2]),
+        hour: parseInt(timeArr[0]),
+        minute: parseInt(timeArr[1]),
+        second: 0 // 秒默认设置为0
+      };
+      
+      await espApi.setTime(timeData);
+      
+      // 隐藏弹窗
+      this.setData({
+        showManualTimeModal: false
+      });
+      
+      wx.hideLoading();
+      wx.showToast({
+        title: '时间设置成功',
+        icon: 'success'
+      });
+      
+      // 获取最新状态
+      this.fetchDeviceStatus();
+    } catch (error) {
+      console.error('设置时间失败:', error);
+      
+      wx.hideLoading();
+      wx.showToast({
+        title: '设置时间失败',
         icon: 'none'
       });
     }
